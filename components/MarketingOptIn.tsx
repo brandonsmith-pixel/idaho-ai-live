@@ -90,7 +90,7 @@ export default function MarketingOptIn() {
                     <CheckCircle className="w-6 h-6 text-blue-300 flex-shrink-0" />
                     <div>
                       <p className="font-semibold">Monthly AI Workshops</p>
-                      <p className="text-sm text-blue-200">Free for subscribers (normally $197)</p>
+                      <p className="text-sm text-blue-200">Free for subscribers</p>
                     </div>
                   </div>
                 </div>
