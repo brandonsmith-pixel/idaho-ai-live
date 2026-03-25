@@ -24,9 +24,18 @@ import {
   Target,
   TrendingUp,
   Users,
-  Zap
+  Zap,
+  Phone,
+  Mail
 } from 'lucide-react';
 import Image from 'next/image';
+import TrustBadges from '@/components/TrustBadges';
+import PartnershipRoadmap from '@/components/PartnershipRoadmap';
+import OngoingSupport from '@/components/OngoingSupport';
+import ROICalculator from '@/components/ROICalculator';
+import ClientLogos from '@/components/ClientLogos';
+import AnimatedStats from '@/components/AnimatedStats';
+import EvolvingPartnership from '@/components/EvolvingPartnership';
 
 export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -143,9 +152,15 @@ export default function Home() {
       <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
-            <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full mb-6 text-sm font-medium">
-              <MapPin className="w-4 h-4" />
-              <span>Proudly Serving Idaho Businesses Since 2019</span>
+            <div className="flex flex-wrap justify-center gap-3 mb-6">
+              <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">
+                <MapPin className="w-4 h-4" />
+                <span>Idaho's AI Partner Since 2019</span>
+              </div>
+              <div className="inline-flex items-center space-x-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">
+                <Handshake className="w-4 h-4" />
+                <span>Your Long-Term AI Partner</span>
+              </div>
             </div>
             
             <h1 className="text-5xl md:text-7xl font-black mb-6 text-gray-900 leading-tight">
@@ -169,15 +184,7 @@ export default function Home() {
             </div>
 
             {/* Trust Indicators */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-3xl md:text-4xl font-black text-blue-700">{stat.number}</div>
-                  <div className="text-gray-900 font-semibold">{stat.label}</div>
-                  <div className="text-sm text-gray-500">{stat.subtext}</div>
-                </div>
-              ))}
-            </div>
+            <AnimatedStats stats={stats} />
           </div>
         </div>
       </section>
@@ -205,6 +212,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Client Logos */}
+      <ClientLogos />
 
       {/* Projects Section */}
       <section id="projects" className="py-20 md:py-32">
@@ -280,6 +290,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Partnership Roadmap */}
+      <PartnershipRoadmap />
 
       {/* Testimonials Section */}
       <section className="py-20 md:py-32 bg-blue-700 text-white">
@@ -437,6 +450,36 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Evolving Partnership */}
+      <EvolvingPartnership />
+
+      {/* Ongoing Support */}
+      <OngoingSupport />
+
+      {/* ROI Calculator Section */}
+      <section className="py-20 md:py-32 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-black mb-4 text-gray-900">
+                See Your <span className="text-blue-700">ROI Before You Buy</span>
+              </h2>
+              <p className="text-xl text-gray-600">
+                No guesswork. Calculate exactly how much AI will save your business.
+              </p>
+            </div>
+            <ROICalculator />
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Badges */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
+          <TrustBadges />
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section id="contact" className="py-20 md:py-32 bg-gradient-to-br from-blue-700 to-blue-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -464,9 +507,24 @@ export default function Home() {
               <form className="space-y-4" onSubmit={async (e) => {
                 e.preventDefault();
                 const formData = new FormData(e.currentTarget);
+                const data = Object.fromEntries(formData);
                 
-                // Here you would handle the form submission
-                alert(`Thanks ${formData.get('name')}! We'll be in touch within 24 hours.`);
+                try {
+                  const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                  });
+                  
+                  if (response.ok) {
+                    alert(`Thanks ${formData.get('name')}! We'll be in touch within 24 hours.`);
+                    e.currentTarget.reset();
+                  } else {
+                    alert('Something went wrong. Please try again or call us directly.');
+                  }
+                } catch (error) {
+                  alert('Something went wrong. Please try again or call us directly.');
+                }
               }}>
                 <div className="grid md:grid-cols-2 gap-4">
                   <input
