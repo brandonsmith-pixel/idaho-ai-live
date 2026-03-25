@@ -36,6 +36,8 @@ import ROICalculator from '@/components/ROICalculator';
 import ClientLogos from '@/components/ClientLogos';
 import AnimatedStats from '@/components/AnimatedStats';
 import EvolvingPartnership from '@/components/EvolvingPartnership';
+import MarketingOptIn from '@/components/MarketingOptIn';
+import PopupOptIn from '@/components/PopupOptIn';
 
 export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -127,6 +129,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Popup Opt-In (appears after 30 seconds) */}
+      <PopupOptIn />
       {/* Navigation */}
       <nav className="sticky top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-gray-200">
         <div className="container mx-auto px-4 sm:px-6">
@@ -472,6 +476,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Marketing Opt-In */}
+      <MarketingOptIn />
 
       {/* Trust Badges */}
       <section className="py-12 bg-white">
