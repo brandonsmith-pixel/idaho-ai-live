@@ -50,6 +50,17 @@ export default function PartnershipRoadmap() {
         "Strategic AI roadmap"
       ],
       result: "Market leadership"
+    },
+    {
+      month: "Ongoing",
+      title: "Repeat & Automate Everything",
+      tasks: [
+        "Identify next process to automate",
+        "Deploy new AI solutions quarterly",
+        "Stay ahead of technology changes",
+        "Compound your efficiency gains"
+      ],
+      result: "Unstoppable growth"
     }
   ];
 
@@ -61,7 +72,8 @@ export default function PartnershipRoadmap() {
             Your AI Journey with <span className="text-blue-700">Idaho AI</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We're not just vendors. We're your long-term AI partners, committed to your continuous success.
+            We're not just vendors. We're your long-term AI partners, committed to your continuous success. 
+            <span className="font-bold text-gray-900">Every quarter, we find something new to automate.</span>
           </p>
         </div>
 
@@ -70,7 +82,7 @@ export default function PartnershipRoadmap() {
           <div className="hidden md:flex justify-between mb-8 relative">
             <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 -translate-y-1/2"></div>
             <div className="absolute top-1/2 left-0 h-1 bg-blue-700 -translate-y-1/2 transition-all duration-500"
-                 style={{ width: `${(activePhase + 1) * 25}%` }}></div>
+                 style={{ width: `${(activePhase + 1) * 20}%` }}></div>
             {phases.map((phase, index) => (
               <button
                 key={index}
