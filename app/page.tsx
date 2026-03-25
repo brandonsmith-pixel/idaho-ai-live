@@ -38,6 +38,7 @@ import AnimatedStats from '@/components/AnimatedStats';
 import EvolvingPartnership from '@/components/EvolvingPartnership';
 import MarketingOptIn from '@/components/MarketingOptIn';
 import PopupOptIn from '@/components/PopupOptIn';
+import BeforeAfterVision from '@/components/BeforeAfterVision';
 
 export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -339,6 +340,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Before/After Vision */}
+      <BeforeAfterVision />
 
       {/* About Section */}
       <section id="about" className="py-20 md:py-32 bg-white">
